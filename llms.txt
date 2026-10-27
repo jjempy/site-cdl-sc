@@ -1,0 +1,24 @@
+# SC CDL Cost Comparison
+
+> A comparison directory for South Carolina CDL training. Sourced costs, lengths,
+> and Training Provider Registry check dates. No invented prices, ratings, or
+> availability. This is a referral service, not a school.
+
+## Pages
+- / — Comparison table: 9 providers, Charleston to Columbia, with sources and dates checked 2026-10-27
+- /cost/ — True-cost calculator. Formula: Out-of-pocket (est.) = Gross tuition + Fees + Tools/kit + DOT/DMV fees - Grant applied
+- /grants/ — SC WINS up to $5,000/year after other aid; WIOA varies by local board; VA/GI Bill per-program approval required. HOPE Career Grant is Georgia-only, not SC.
+- /tpr-tracker/ — How to check the FMCSA Training Provider Registry, in 5 steps, and what removal means
+- /methodology/ — Sources, refresh cadence, unverified markers, correction process (5 business days), featured/sponsored rules
+- /inquiry/ — Ask about one named school, with 1:1 consent. No live form endpoint wired in this build.
+- /charleston/ — Charleston Tri-County providers, with local evidence
+- /greenville/ — Greenville County providers, with local evidence
+- /columbia/ — Columbia/Richland providers, with SC Path figures labeled by source
+- /schools/midlands-technical-college/ — Midlands Tech CDL-A, Columbia
+- /schools/transtech-charleston/ — TransTech CDL, Charleston
+- /schools/greenville-technical-college/ — Greenville Tech CDL, Greenville
+- /schools/transtech-columbia/ — TransTech CDL, Columbia
+- /schools/driving-academy-greenville/ — Driving Academy, Greenville
+
+## Optional
+- Methodology: /methodology/
