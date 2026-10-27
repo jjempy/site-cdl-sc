@@ -1,0 +1,203 @@
+/* Road-ledger — CDL directory design tokens. Tokens live ONLY in :root.
+   Every other rule uses var() or color-mix() derivatives. One accent:
+   highway amber. No green, no second accent, no gradient, no glass. */
+:root{
+  --paper:#ffffff;
+  --ink:#1c1b17;
+  --muted:#4a463f;
+  --rule:color-mix(in srgb, var(--ink) 18%, var(--paper));
+  --surface:color-mix(in srgb, var(--ink) 4%, var(--paper));
+  --surface-strong:color-mix(in srgb, var(--ink) 8%, var(--paper));
+  --accent:#b45309;
+  --accent-soft:color-mix(in srgb, var(--accent) 10%, var(--paper));
+  --accent-deep:color-mix(in srgb, var(--accent) 82%, var(--ink));
+  --radius:2px;
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --display:"Archivo",var(--sans);
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --space-section:72px;
+  --space-block:24px;
+}
+*{box-sizing:border-box}
+html,body{overflow-x:clip}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:17.5px;line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--accent-deep);text-underline-offset:3px;text-decoration-thickness:1.5px}
+a:hover{text-decoration-thickness:2.5px}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{
+  outline:3px solid var(--accent);outline-offset:2px;
+}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+main{padding-bottom:72px}
+
+/* ---- Header: brand, nav, one sticky CTA ---- */
+header.site{
+  border-bottom:2px solid var(--ink);position:sticky;top:0;
+  background:var(--paper);z-index:10;
+}
+header.site .wrap{
+  display:flex;gap:16px;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;padding-top:14px;padding-bottom:14px;
+}
+.brand{
+  font-family:var(--display);font-weight:800;letter-spacing:-.02em;
+  color:var(--ink);text-decoration:none;font-size:21px;line-height:1.1;
+  min-height:44px;display:inline-flex;align-items:center;
+}
+.brand span{color:var(--accent)}
+nav.main{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+nav.main a{
+  color:var(--ink);text-decoration:none;font-weight:600;font-size:16px;
+  padding:10px 12px;min-height:44px;display:inline-flex;align-items:center;
+  border-radius:999px;
+}
+nav.main a:hover{background:var(--surface)}
+nav.main a[aria-current="page"]{color:var(--accent-deep);box-shadow:inset 0 -3px 0 var(--accent)}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:48px;padding:12px 22px;border-radius:999px;
+  background:var(--accent);color:var(--paper);text-decoration:none;
+  font-weight:700;font-size:16px;border:2px solid var(--accent);cursor:pointer;
+}
+.btn:hover{background:var(--accent-deep);border-color:var(--accent-deep)}
+.btn.secondary{background:var(--paper);color:var(--ink);border-color:var(--ink)}
+.btn.secondary:hover{background:var(--surface)}
+.btn-cta{white-space:nowrap}
+
+/* ---- Type hierarchy: display carries it, size + weight only ---- */
+h1,h2,h3{font-family:var(--display);line-height:1.12;letter-spacing:-.02em}
+h1{font-size:clamp(34px,5.2vw,56px);font-weight:800;margin:48px 0 16px;max-width:22ch}
+h2{
+  font-size:clamp(26px,3.4vw,34px);font-weight:800;
+  margin:var(--space-section) 0 16px;padding-top:20px;position:relative;
+}
+h2::before{
+  content:"";position:absolute;top:0;left:0;width:32px;height:4px;
+  background:var(--accent);
+}
+h3{font-size:21px;font-weight:700;margin:32px 0 10px}
+.eyebrow{
+  font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--accent-deep);margin:0 0 4px;
+}
+.lede{font-size:20px;line-height:1.6;max-width:68ch;margin:0 0 12px}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin:24px 0 8px}
+p{margin:0 0 16px;max-width:74ch}
+li{margin-bottom:8px}
+ol,ul{padding-left:24px}
+
+/* ---- The one signature gesture: dashed route line + mile marker ---- */
+.route{border:0;border-top:2px dashed var(--accent);margin:40px 0;position:relative}
+.route::after{
+  content:"MI " attr(data-mile);position:absolute;right:0;top:-14px;
+  background:var(--paper);padding:2px 10px;font-family:var(--mono);
+  font-size:13px;font-weight:700;color:var(--accent-deep);
+}
+
+/* ---- Cards, ledger, calculator (the evidence artifact) ---- */
+.card{border:1px solid var(--rule);border-radius:var(--radius);padding:24px;background:var(--paper)}
+.calc{
+  background:var(--paper);border:2px solid var(--ink);
+  border-top:6px solid var(--accent);padding:28px;margin:32px 0;
+}
+.calc h2{margin-top:0;padding-top:0}
+.calc h2::before{display:none}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px 28px}
+.calc-grid label{margin-top:16px}
+label{display:block;font-weight:700;margin:20px 0 6px}
+input,select{
+  width:100%;min-height:48px;font-size:16px;padding:11px 12px;
+  border:1.5px solid var(--rule);border-radius:var(--radius);
+  background:var(--paper);color:var(--ink);
+}
+input:focus,select:focus{border-color:var(--ink)}
+.formula{
+  font-family:var(--mono);font-size:14.5px;line-height:1.6;
+  background:var(--surface);border:1px solid var(--rule);
+  padding:14px 16px;overflow-x:auto;white-space:pre-wrap;
+}
+.result{
+  font-size:clamp(32px,5vw,44px);font-weight:800;font-family:var(--display);
+  color:var(--accent-deep);margin:24px 0 8px;line-height:1.1;
+}
+.result-label{font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:20px 0 0}
+
+/* ---- Tables: spec-sheet on desktop, labelled cards on mobile ---- */
+table{width:100%;border-collapse:collapse}
+th,td{
+  padding:12px 14px;border-bottom:1px solid var(--rule);
+  text-align:left;vertical-align:top;
+}
+thead th{
+  font-family:var(--display);font-size:15px;font-weight:800;
+  border-bottom:2px solid var(--ink);white-space:nowrap;
+}
+th[data-sort]{cursor:pointer}
+th[data-sort]::after{content:" ↕";font-family:var(--mono);font-size:12px;color:var(--accent-deep)}
+td.wrapcell{white-space:normal}
+.num{font-family:var(--mono)}
+.status{font-weight:700;color:var(--ink)}
+td .status{
+  display:block;border-left:4px solid var(--accent);
+  padding-left:12px;
+}
+.mono{font-family:var(--mono)}
+.small{font-size:15px;color:var(--muted)}
+.unverified{font-weight:700;color:var(--accent-deep)}
+
+/* ---- FAQ: labelled reveal, no mystery icons ---- */
+.faq details{border:1px solid var(--rule);border-radius:var(--radius);padding:16px 20px;margin:14px 0}
+.faq summary{font-weight:700;cursor:pointer;min-height:44px;display:flex;align-items:center;justify-content:space-between;gap:16px;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--mono);font-size:22px;font-weight:700;color:var(--accent-deep);flex:none}
+.faq details[open] summary::after{content:"−"}
+.faq details p:last-child{margin-bottom:0}
+
+footer{border-top:2px solid var(--ink);margin-top:64px;padding:28px 0 48px}
+footer p{color:var(--muted)}
+footer nav{display:flex;gap:6px;flex-wrap:wrap}
+footer nav a{color:var(--ink);text-decoration:none;font-weight:600;padding:10px 12px;min-height:44px;display:inline-flex;align-items:center;border-radius:999px}
+footer nav a:hover{background:var(--surface)}
+
+@media(max-width:760px){
+  body{font-size:17px}
+  .wrap{padding:0 18px}
+  h1{margin-top:32px}
+  h2{margin-top:56px}
+  .calc{padding:20px 18px}
+  .calc-grid{grid-template-columns:1fr}
+  header.site .wrap{row-gap:8px}
+  nav.main{order:3;width:100%}
+  nav.main a{padding:10px 10px}
+  .btn-cta{margin-left:auto}
+  /* Multi-column tables become labelled cards; sort headers become pill buttons */
+  table.sortable,table.sortable tbody,table.sortable tr,table.sortable td,
+  table.card-table,table.card-table tbody,table.card-table tr,table.card-table td{display:block;width:100%}
+  table.sortable thead,table.card-table thead{display:block}
+  table.sortable thead tr{display:flex;flex-wrap:wrap;gap:8px}
+  table.sortable thead th{
+    border:1.5px solid var(--ink);border-radius:999px;padding:10px 14px;
+    white-space:normal;
+  }
+  table.card-table thead{display:none}
+  table.sortable tbody tr,table.card-table tbody tr{border:1px solid var(--rule);border-radius:var(--radius);padding:8px 16px;margin:16px 0}
+  table.sortable tbody td,table.card-table tbody td{border-bottom:1px solid var(--surface-strong);padding:12px 0}
+  table.sortable tbody td:last-child,table.card-table tbody td:last-child{border-bottom:0}
+  table.sortable tbody td::before,table.card-table tbody td::before{
+    content:attr(data-label);display:block;font-family:var(--mono);
+    font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--muted);margin-bottom:2px;
+  }
+  table.sortable tbody td:first-child,table.card-table tbody td:first-child{font-weight:700}
+  /* Field/value tables stack: field above value */
+  table:not(.sortable):not(.card-table) td{display:block;border-bottom:0;padding:8px 0}
+  table:not(.sortable):not(.card-table) tr{border-bottom:1px solid var(--rule)}
+  table:not(.sortable):not(.card-table) tr td:first-child{font-weight:700;padding-bottom:0}
+  table:not(.sortable):not(.card-table) thead th{display:block}
+}
+@media(prefers-reduced-motion:reduce){
+  *{scroll-behavior:auto!important;transition:none!important;animation:none!important}
+}
